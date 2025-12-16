@@ -1,4 +1,4 @@
-# Tech News Aggregator
+# SemanticFeed
 
 A clean, minimal tech news aggregator frontend built with React, Vite, TypeScript, and Redux Toolkit.
 

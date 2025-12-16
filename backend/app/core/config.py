@@ -15,6 +15,6 @@ if not DATABASE_URL:
     POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD", "password")
     POSTGRES_SERVER = os.environ.get("POSTGRES_SERVER", "localhost")
     POSTGRES_PORT = os.environ.get("POSTGRES_PORT", "5432")
-    POSTGRES_DB = os.environ.get("POSTGRES_DB", "newsdb")
+    POSTGRES_DB = os.environ.get("POSTGRES_DB", "semanticdb")
     
     DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}"

@@ -15,7 +15,7 @@ stop_event = threading.Event()
 story.Base.metadata.create_all(bind=engine)
 article.Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="Tech News Aggregator")
+app = FastAPI(title="SemanticFeed API")
 
 app.add_middleware(
     CORSMiddleware,

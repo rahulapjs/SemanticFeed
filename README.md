@@ -1,4 +1,4 @@
-# Tech News Aggregator
+# SemanticFeed
 
 A full-stack news aggregator application built with FastAPI (Backend) and React/Vite (Frontend).
 
