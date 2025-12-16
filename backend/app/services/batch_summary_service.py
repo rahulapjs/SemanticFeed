@@ -34,23 +34,35 @@ def generate_batch_summaries():
         if not articles:
             continue
 
-        headlines = "\n".join(f"- {a.title}" for a in articles)
+        contents = []
+
+        for a in articles:
+            text = f"TITLE: {a.title}\n"
+
+            if a.content:
+                text += f"CONTENT:\n{a.content[:3000]}"
+            else:
+                text += "CONTENT:\n(Not available)"
+
+            contents.append(text)
+
+        joined_content = "\n\n---\n\n".join(contents)
 
         prompt_blocks.append(
             f"""
 STORY_ID: {story.id}
-HEADLINES:
-{headlines}
+CONTENT:
+{joined_content}
 """
         )
 
     if not prompt_blocks:
-        print("✓ No valid stories with articles to summarize", flush=True)
+        print("✓ No valid stories with content to summarize", flush=True)
         db.close()
         return
 
     final_prompt = f"""
-You are a tech news analyst.
+You are a professional tech news analyst.
 
 For each STORY_ID below, generate a concise summary.
 
@@ -59,6 +71,7 @@ Rules:
 - Bullet points
 - No repetition
 - 2–4 bullets max
+- Summarize the *core idea*, not every detail
 - Output MUST be a JSON array
 - Do NOT add any text outside JSON
 
