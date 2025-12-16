@@ -11,7 +11,7 @@ export const SourceItem = ({ source }: SourceItemProps) => {
     let timeAgo = '';
     try {
         timeAgo = formatDistanceToNow(new Date(source.timestamp), { addSuffix: true });
-    } catch (e) {
+    } catch {
         timeAgo = 'recently';
     }
 
