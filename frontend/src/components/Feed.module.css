@@ -1,0 +1,120 @@
+.container {
+    max-width: 1400px;
+    /* Wider container for grid */
+    margin: 0 auto;
+    padding: 2rem 2rem;
+    padding-bottom: 6rem;
+
+    /* Modern Grid Layout */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 2rem;
+    align-items: start;
+    /* Prevents cards from stretching vertically weirdly if content differs significantly, though 'stretch' is default and often nice for uniform rows. Let's try masonry-ish feel by not stretching? No, stretch looks cleaner in grid. */
+}
+
+/* On mobile, revert to single column stack */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem 1rem;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+.errorArea,
+.empty {
+    grid-column: 1 / -1;
+    /* Span full width */
+    text-align: center;
+    padding: 4rem 2rem;
+
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    color: #4b5563;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.errorMessage {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #ef4444;
+    font-weight: 500;
+}
+
+.retryBtn {
+    padding: 0.75rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #1f2937;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.retryBtn:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Skeleton Styles */
+.skeletonCard {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    padding: 2rem;
+    /* Remove margin-bottom as grid gap handles it */
+    margin-bottom: 0;
+    height: 100%;
+}
+
+.skeleton {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 6px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonTitle {
+    height: 2.25rem;
+    width: 70%;
+    margin-bottom: 1.5rem;
+}
+
+.skeletonLine {
+    height: 1rem;
+    width: 100%;
+    margin-bottom: 0.8rem;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.skeletonFooter {
+    height: 2rem;
+    width: 40%;
+    margin-top: auto;
+    /* Push to bottom */
+    border-radius: 99px;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}

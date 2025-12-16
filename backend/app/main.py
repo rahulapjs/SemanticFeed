@@ -1,6 +1,7 @@
 import threading
 import time
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.database import engine
 from app.models import story, article
@@ -15,6 +16,15 @@ story.Base.metadata.create_all(bind=engine)
 article.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Tech News Aggregator")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # For development convenience
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(feed_router)
 
 
